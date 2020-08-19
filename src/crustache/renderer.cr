@@ -66,9 +66,9 @@ class Crustache::Renderer(T)
         t = Parser.new(@open_tag_default, @close_tag_default, io, value.to_s).parse
         io = IO::Memory.new io.size
         t.visit(Renderer.new @open_tag_default, @close_tag_default, @context, @fs, io)
-        Util.escape io.to_s, @out_io
+        @out_io << io.to_s
       else
-        Util.escape value.to_s, @out_io
+        @out_io << value.to_s
       end
     end
 
